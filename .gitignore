@@ -1,0 +1,44 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Databases
+*.db
+*.sqlite3
+lemma.db
+
+# Ingestion / Upload folders
+uploads/
+backend/uploads/
+backend/app/uploads/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS Specific
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Node / React (for future phases)
+node_modules/
+dist/
+build/
+.eslintcache
