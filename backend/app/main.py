@@ -59,13 +59,8 @@ async def general_exception_handler(request, exc: Exception):
         content={"detail": f"An unexpected error occurred: {str(exc)}"},
     )
 
-@app.get("/")
-async def root():
-    return {
-        "message": f"Welcome to {settings.PROJECT_NAME}",
-        "docs": "/docs",
-        "status": "online",
-    }
+from pathlib import Path
+from fastapi.staticfiles import StaticFiles
 
 @app.get("/health")
 @app.get(f"{settings.API_V1_STR}/health")
@@ -112,3 +107,10 @@ async def upload_document(file: UploadFile = File(...)):
         sentence_count=len(sentences),
         sentences=sentences
     )
+
+# Serve static frontend files
+FRONTEND_DIR = Path(__file__).resolve().parent.parent.parent / "frontend"
+# Ensure the directory exists
+FRONTEND_DIR.mkdir(parents=True, exist_ok=True)
+app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
+
